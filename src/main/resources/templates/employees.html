@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/masterLayout :: layout(~{:: main})}"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+    <div class="container mt-5">
+        <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <span th:text="${success}"></span>
+        </div>
+        <div th:if="${update}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <span th:text="${update}"></span>
+        </div>
+        <a th:href= "@{/add_employee}" class="btn btn-success mb-4">New Employee</a>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Employee Tables</h4>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Hired Date</th>
+                            <th>Salary</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="emp : ${employeesList}">
+                            <td th:text="${emp.id}"></td>
+                            <td th:text="${emp.firstName}"></td>
+                            <td th:text="${emp.lastName}"></td>
+                            <td th:text="${emp.email}"></td>
+                            <td th:text="${emp.phone}"></td>
+                            <td th:text="${emp.hiredDate}"></td>
+                            <td th:text="${emp.salary}"></td>
+                            <td>
+                                <a th:href="@{'/update-employee?id=' + ${emp.id}}" class="btn btn-outline-primary">Update</a>
+                                <a th:href="@{'/delete-employee?id=' + ${emp.id}}" class="btn btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+</body>
+</html>

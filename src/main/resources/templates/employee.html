@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/masterLayout :: layout(~{::main})}"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Add Employee</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<main role="main">
+  <div class="container mt-5">
+     <div class="row">
+       <div class="col">
+         <div class="card">
+           <div class="card-header">
+             <h4 th:text="${ (employeeId != 0) ? 'Update Employee form' : 'Save Employee Form'}"></h4>
+           </div>
+           <div class="card-body">
+             <form th:action="@{ (${ employee}) /update-employee}" th:object="${employee}" method="POST" >
+                  <div class="mb-3">
+                    <label class="form-label">First Name</label>
+                    <input type="text" th:field="*{firstName}"
+                           th:classappend="${#fields.hasErrors('firstName')} ? 'is-invalid'"
+                           class="form-control">
+                    <small class="invalid-feedback" th:if="${#fields.hasErrors('firstName')}"
+                           th:errors="*{firstName}" ></small>
+                  </div>
+                 <div class="mb-3">
+                   <label class="form-label">Last Name</label>
+                   <input type="text" th:field="*{lastName}"
+                          th:classappend="${#fields.hasErrors('lastName')} ? 'is-invalid'"
+                          class="form-control">
+                   <small class="invalid-feedback" th:if="${#fields.hasErrors('lastName')}"
+                          th:errors="*{lastName}" ></small>
+                 </div>
+                 <div class="mb-3">
+                   <label class="form-label">Email</label>
+                   <input type="text" th:field="*{email}"
+                          th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'"
+                          class="form-control">
+                   <small class="invalid-feedback" th:if="${#fields.hasErrors('email')}"
+                          th:errors="*{email}" ></small>
+                 </div>
+                 <div class="mb-3">
+                   <label class="form-label">Phone Number</label>
+                   <input type="text" th:field="*{phone}"
+                          th:classappend="${#fields.hasErrors('phone')} ? 'is-invalid'"
+                          class="form-control">
+                   <small class="invalid-feedback" th:if="${#fields.hasErrors('phone')}"
+                          th:errors="*{phone}" ></small>
+                 </div>
+               <div class="mb-3">
+                 <label class="form-label">Hired Date</label>
+                 <input type="date" th:field="*{hiredDate}"
+                        th:classappend="${#fields.hasErrors('hiredDate')} ? 'is-invalid'"
+                        class="form-control">
+                 <small class="invalid-feedback" th:if="${#fields.hasErrors('hiredDate')}"
+                        th:errors="*{hiredDate}" ></small>
+               </div>
+               <div class="mb-3">
+                 <label class="form-label">Salary</label>
+                 <input type="number" step="any" th:field="*{salary}"
+                        th:classappend="${#fields.hasErrors('salary')} ? 'is-invalid'"
+                        class="form-control">
+                 <small class="invalid-feedback" th:if="${#fields.hasErrors('salary')}"
+                        th:errors="*{salary}" ></small>
+               </div>
+
+               <input type="submit" th:value = "${(employeeId != 0) ? 'Update Employee' : 'Save Employee'}" class="btn btn-primary">
+
+             </form>
+           </div>
+         </div>
+       </div>
+     </div>
+  </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
